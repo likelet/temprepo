@@ -1,5 +1,7 @@
 # Super Power Awakening (钞能力觉醒)
 
+This is a funny project for test the agent. 
+
 An A-share investment simulation text adventure game — from 10,000 RMB to stock market mastery.
 
 > Start with 10,000 RMB. Navigate 10 years of real A-share market events. Make every investment decision count.
