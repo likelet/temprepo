@@ -1,0 +1,11 @@
+# Temporary scripts
+build_batch2.py
+build_new_events.py
+fix_balance.py
+fix_balance_v2.py
+
+# WorkBuddy internal files
+.workbuddy/
+
+# Desktop copy
+index_v5.html
