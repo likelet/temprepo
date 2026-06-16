@@ -41,12 +41,49 @@ Open `index.html` directly in a browser. No server required.
 
 ## Changelog
 
-### v5.6 (2026-06-16)
+### v7.0 (2026-06-16) — 风险博弈版
 
-- Bumped version to v5.6
-- README translated to English
+- **选项随机打乱**：每事件选项显示顺序随机，消除"永远选第一个"元策略
+- **风险/回报不对等系统**：每个选项标注🛡️稳健/🎲博弈/🔒保守风险标签，稳健型+3~+12%，博弈型-45%~+18%，保守型-5~+4%
+- **仓位管理系统**：每个事件前可选轻仓30%/半仓60%/重仓100%，仓位影响收益绝对值
+- **4风格平衡**：蒙特卡洛10000次模拟验证，4风格随机中位收益差距<30%（+52%~+67%）
+- **极端爆仓事件**：千股跌停/股权质押/恒大暴雷等事件的最差选项pct低至-45%
+- **生产数据**：33事件×4风格×3选项=396个选项，每选项带risk_type属性
+- Bumped version to v7.0
+
+### v6.2 (2026-06-16)
+
+- v6.1 风格专属版：每种风格的选项文本完全不同（技术派看K线，价值派看PE，题材猎手追热点，佛系定投）
+- 取消通用 style_bonus，改为风格专属选项
+- 每次选择后显示当前资产余额
+- 银行破产机制：资金归零触发 Game Over
+- 端页新增SVG资金曲线图（渐变填充+阶段着色点+收益率标注）
+- Bumped version to v6.2
+
+### v6.0 (2026-06-16)
+
+- 银行破产机制上线：资金 ≤ 0 进入破产界面（骷髅动画+随机教训+统计）
+- 移除100元下限，允许真正归零
+- 版本号更新至 v6.0
+
+### v5.8 (2026-06-16)
+
+- 题库焕新：33个全新事件，叙事升级（对话体/新闻体/心理描写）
+- 16/33事件打乱选项风格顺序（不再总是0/1/2/3固定排列）
+- 移除打赏二维码
+- 四种风格平衡：中位数收益+194%~+234%
 
 ### v5.5 (2026-06-16)
+
+- Game renamed to "Super Power Awakening" (钞能力觉醒)
+- Added hover tooltip system for key investment concepts
+- Added README.md
+- Bumped version to v5.5
+
+### v5.6 (2026-06-16)
+
+- README translated to English
+- Bumped version to v5.6
 
 - Game renamed to "Super Power Awakening" (钞能力觉醒)
 - Added hover tooltip system for key investment concepts: leverage, margin trading, short selling, options, circuit breaker, limit-up/down, ST, registration-based IPO, MSCI, LPR, ETF, convertible bonds, PE/PB/ROE and 40+ more financial terms
