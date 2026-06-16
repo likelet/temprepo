@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>股神成长之路 v5.0</title>
+<title>钞能力觉醒 v5.5</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -245,6 +245,14 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .tip-qrcode{width:200px;height:200px;display:block;border-radius:8px}
 .tip-hint{font-size:12px;color:var(--dim);margin-top:12px}
 
+/* === HOVER TOOLTIPS === */
+.tip{position:relative;cursor:help;border-bottom:1px dashed rgba(34,197,94,0.4);transition:border-color .2s}
+.tip:hover{border-color:rgba(34,197,94,0.8)}
+.tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(0.92);padding:10px 14px;border-radius:10px;background:#1e293b;border:1px solid var(--border);color:#cbd5e1;font-size:12px;line-height:1.6;white-space:normal;width:max-content;max-width:260px;pointer-events:none;opacity:0;transition:all .2s ease;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.4);font-weight:400;letter-spacing:0}
+.tip:hover::after{opacity:1;transform:translateX(-50%) scale(1)}
+.tip::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%) scale(0.92);border:6px solid transparent;border-top-color:#1e293b;pointer-events:none;opacity:0;transition:all .2s ease;z-index:101}
+.tip:hover::before{opacity:1;transform:translateX(-50%) scale(1)}
+
 /* Scrollbar */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -258,7 +266,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div id="screen-start" class="screen active">
   <div class="start-header">
     <div class="game-logo">📈</div>
-    <div class="game-title">股神成长之路<span class="game-ver">v5.0 · 成长路线版</span></div>
+    <div class="game-title">钞能力觉醒<span class="game-ver">v5.5 · 成长路线版</span></div>
     <div class="game-subtitle">本金10000元，经历A股十年真实场景，从韭菜到股神的蜕变</div>
   </div>
 
@@ -285,26 +293,26 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
       <div class="style-card" onclick="selectStyle(0)">
         <div class="icon">📊</div>
         <div class="name">技术派</div>
-        <div class="desc">K线 / 均线 / 量价分析</div>
-        <div class="style-hint">擅长：趋势跟踪、止损纪律、ETF轮动</div>
+        <div class="desc"><span class="tip" data-tip="K线图（蜡烛图）：记录股票每日开盘价、收盘价、最高价、最低价的可视化图表，是技术分析最基础的工具">K线</span> / <span class="tip" data-tip="均线（MA）：将一段时间内的收盘价取平均值连成线，反映价格趋势。常用5日、10日、20日、60日均线">均线</span> / <span class="tip" data-tip="量价分析：通过成交量与价格变动的配合关系，判断买卖力量对比。价涨量增为健康上涨，价涨量缩需警惕">量价分析</span></div>
+        <div class="style-hint">擅长：<span class="tip" data-tip="趋势跟踪：顺势而为，在上升趋势中买入持有，在下降趋势中空仓等待">趋势跟踪</span>、<span class="tip" data-tip="止损纪律：当价格跌破预设止损位时无条件卖出，控制单次亏损不超过总资金的2%">止损纪律</span>、<span class="tip" data-tip="ETF轮动：在不同行业ETF之间切换，跟踪资金流向和板块轮动规律">ETF轮动</span></div>
       </div>
       <div class="style-card" onclick="selectStyle(1)">
         <div class="icon">🔍</div>
         <div class="name">价值派</div>
-        <div class="desc">财报 / 估值 / 安全边际</div>
-        <div class="style-hint">擅长：年报分析、逆向投资、高股息</div>
+        <div class="desc"><span class="tip" data-tip="财报分析：通过阅读上市公司年报、季报中的利润表、资产负债表、现金流量表，评估公司经营状况">财报</span> / <span class="tip" data-tip="估值：判断股票价格是否合理。常用PE（市盈率）、PB（市净率）、ROE（净资产收益率）等指标">估值</span> / <span class="tip" data-tip="安全边际：以低于内在价值的价格买入，留出容错空间。如价值100元的股票，80元买入就有20%安全边际">安全边际</span></div>
+        <div class="style-hint">擅长：<span class="tip" data-tip="年报分析：深入研究上市公司年报，关注营收增长、利润率、现金流等核心指标">年报分析</span>、<span class="tip" data-tip="逆向投资：在市场恐慌时买入被错杀的优质股票，在市场疯狂时卖出。巴菲特名言：别人贪婪我恐惧">逆向投资</span>、<span class="tip" data-tip="高股息：选择持续稳定分红的公司，靠股息获得稳定现金流回报">高股息</span></div>
       </div>
       <div class="style-card" onclick="selectStyle(2)">
         <div class="icon">⚡</div>
         <div class="name">题材猎手</div>
-        <div class="desc">热点 / 政策 / 事件驱动</div>
-        <div class="style-hint">擅长：概念炒作、海外映射、游资博弈</div>
+        <div class="desc"><span class="tip" data-tip="热点炒作：追逐市场当前最热门的话题和概念板块，如AI、新能源、芯片等，利用资金关注度带来的短期拉升获利">热点</span> / <span class="tip" data-tip="政策驱动：跟踪国家政策变化（如产业扶持、税收优惠），提前布局受益行业">政策</span> / <span class="tip" data-tip="事件驱动：围绕重大事件（并购重组、业绩预告、新产品发布）提前埋伏或快速跟进">事件驱动</span></div>
+        <div class="style-hint">擅长：<span class="tip" data-tip="概念炒作：围绕新兴概念（如元宇宙、低空经济）寻找龙头股，快进快出">概念炒作</span>、<span class="tip" data-tip="海外映射：美股或海外市场出现新题材时，在A股寻找对应的映射标的提前布局">海外映射</span>、<span class="tip" data-tip="游资博弈：跟踪知名游资席位和龙虎榜数据，判断主力资金动向">游资博弈</span></div>
       </div>
       <div class="style-card" onclick="selectStyle(3)">
         <div class="icon">🧘</div>
         <div class="name">佛系投资</div>
-        <div class="desc">定投 / 配置 / 长期持有</div>
-        <div class="style-hint">擅长：指数定投、资产配置、不动如山</div>
+        <div class="desc"><span class="tip" data-tip="定投：定期定额投入资金，不考虑短期涨跌。在下跌时买到更多份额，上涨时获得收益，长期摊平成本">定投</span> / <span class="tip" data-tip="资产配置：将资金分散投资于股票、债券、黄金等不同资产类别，降低单一市场风险">配置</span> / <span class="tip" data-tip="长期持有：买入优质资产后长期不动，忽略短期波动。巴菲特最爱的策略：时间是优秀企业的朋友">长期持有</span></div>
+        <div class="style-hint">擅长：<span class="tip" data-tip="指数定投：定期买入沪深300、中证500等宽基指数ETF，获取市场平均收益">指数定投</span>、<span class="tip" data-tip="资产配置：根据年龄和风险承受能力，在股票、债券、现金之间分配资金">资产配置</span>、<span class="tip" data-tip="不动如山：面对暴涨暴跌保持冷静，不被情绪左右。这是最难也是最重要的投资技能">不动如山</span></div>
       </div>
     </div>
   </div>
@@ -396,6 +404,66 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 </div>
 
 <script>
+// ============================
+// AUTO TOOLTIP SYSTEM
+// ============================
+var GLOSSARY = {
+  "杠杆": "借入资金放大投资金额。1倍杠杆意味着本金1万，借款1万，总投入2万。涨10%赚2000（实际收益率20%），跌10%亏2000（实际亏损率20%）",
+  "融资盘": "向券商借钱买入股票的仓位。当股价跌到平仓线，券商会强制卖出，即'爆仓'",
+  "配资": "场外借钱炒股，杠杆可达1:5甚至更高。2015年股灾的导火索之一，已被严厉打击",
+  "融券": "向券商借股票卖出，等跌了再买回来还。做空赚钱的方式。门槛50万",
+  "期权": "给未来以约定价格买入/卖出股票的权利。买入认沽期权=赌跌，买入认购期权=赌涨",
+  "做空": "赌股票会跌来赚钱。A股做空工具少、成本高，散户几乎无法做空",
+  "熔断": "当指数跌幅达到阈值（5%/7%），市场暂停交易。2016年A股熔断4天即被叫停，成为制度笑话",
+  "涨停板": "当日股价涨幅达到10%（创业板20%）后停止交易。封住涨停意味着想买的人买不到",
+  "跌停板": "当日股价跌幅达到10%后停止交易。封住跌停意味着想卖的人卖不掉",
+  "打新": "申购 newly listed 新股。中签后首日通常大涨，是A股传统的无风险收益来源",
+  "注册制": "IPO审核从审批制改为注册制，上市更容易但退市也更严格。2023年全面实施",
+  "ST": "Special Treatment，公司连续亏损或财务异常时被标记。ST股涨跌幅限制5%，*ST有退市风险",
+  "白马股": "业绩稳定、知名度高的大市值公司，如茅台、格力、平安。A股的'好学生'",
+  "蓝筹": "Blue Chip，行业内地位稳固、分红稳定的大公司。类似于象棋中的王牌棋子",
+  "北交所": "北京证券交易所，服务于创新型中小企业。2021年设立，准入门槛较低，波动较大",
+  "MSCI": "国际指数公司，将A股纳入其指数后，跟踪指数的全球基金必须买入A股成分股",
+  "沪港通": "内地投资者通过港股通买港股，香港投资者通过沪股通买A股的互联互通机制",
+  "降息": "央行降低基准利率。降低企业融资成本和房贷利率，理论上利好股市",
+  "降准": "降低银行存款准备金率，释放更多资金进入市场。相当于给经济注入流动性",
+  "LPR": "贷款市场报价利率，国内贷款利率的基准。LPR下降意味着贷款更便宜",
+  "定投": "定期定额投资，如每月固定买入指数基金。下跌时买到更多份额，长期摊平成本",
+  "ETF": "Exchange Traded Fund，交易型开放式指数基金。买入ETF等于一次性买入一篮子股票",
+  "可转债": "可以转换为股票的债券。下跌有债底保护，上涨可转股享受股价涨幅，被称为'下有保底上不封顶'",
+  "沪深300": "A股最大的300家公司组成的指数，代表市场整体表现，是最常用的宽基指数",
+  "平仓": "卖出持仓股票。强制平仓指因触发止损或保证金不足，被券商系统自动卖出",
+  "穿仓": "亏损超过保证金，不仅本金归零还倒欠券商钱。杠杆交易最可怕的结果",
+  "抄底": "在股价大跌后买入，赌价格已经到底部。风险是'地板下面还有地下室'",
+  "满仓": "把所有资金都投入股市，不留现金。涨的时候赚得多，跌的时候无处可逃",
+  "减仓": "卖出一部分持仓，降低风险敞口。通常是获利了结或避险操作",
+  "仓位": "投入股市的资金占总资金的比例。半仓=50%资金买股票，50%现金",
+  "集合竞价": "交易日开盘前（9:15-9:25）集中撮合成交。跌停价挂单=确保开盘第一时间卖出",
+  "龙虎榜": "交易所公布每日涨跌幅、换手率排名靠前股票的买卖席位，可追踪主力资金动向",
+  "游资": "以短期投机为主的私募资金，擅长打板和题材炒作。知名游资的操作会被散户模仿",
+  "抱团": "机构集中持有少数大盘蓝筹股，推高估值。抱团瓦解时往往引发暴跌",
+  "估值": "判断股票价格是否合理。常用PE（市盈率=股价/每股收益）、PB（市净率=股价/每股净资产）",
+  "PE": "市盈率，股价/每股收益。PE 20倍意味着按当前利润水平，20年回本。PE越低越'便宜'",
+  "PB": "市净率，股价/每股净资产。PB<1说明股价低于公司净资产，理论上'打折了'",
+  "ROE": "净资产收益率，净利润/净资产。巴菲特最看重的指标，反映公司用股东资金赚钱的效率",
+  "抄底": "在股价暴跌后买入，赌已经到底。老手说：不要试图接住掉下来的刀",
+  "做空": "通过融券或衍生品，从股价下跌中获利",
+  "蓝筹ETF": "追踪大盘蓝筹股的ETF，如沪深300ETF、上证50ETF。买入它等于一次性买入最大的几百家公司"
+};
+
+// Sort keys by length (longest first) to avoid partial matches
+var GLOSSARY_KEYS = Object.keys(GLOSSARY).sort(function(a,b){ return b.length - a.length; });
+
+function addTips(text){
+  for(var i=0;i<GLOSSARY_KEYS.length;i++){
+    var term = GLOSSARY_KEYS[i];
+    var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(escaped, 'g');
+    text = text.replace(regex, '<span class="tip" data-tip="' + GLOSSARY[term].replace(/"/g, '&quot;') + '">' + term + '</span>');
+  }
+  return text;
+}
+
 // ============================
 // GAME DATA
 // ============================
@@ -2125,13 +2193,13 @@ function renderEvent(){
   date.appendChild(phaseTag);
   ec.appendChild(date);
 
-  // Story
+  // Story (with auto tooltips for key terms)
   var story = document.createElement("div");
   story.className = "event-story";
-  story.textContent = ev.story;
+  story.innerHTML = addTips(ev.story);
   ec.appendChild(story);
 
-  // Choices
+  // Choices (with auto tooltips)
   var choicesDiv = document.createElement("div");
   choicesDiv.className = "choices";
   for(var i=0;i<ev.choices.length;i++){
@@ -2139,7 +2207,7 @@ function renderEvent(){
       var ch = ev.choices[idx];
       var btn = document.createElement("button");
       btn.className = "choice-btn";
-      var label = (idx+1) + ". " + ch.text;
+      var label = (idx+1) + ". " + addTips(ch.text);
       if(ch.style_bonus === selectedStyle){
         label += '<span class="bonus-tag">🎯 风格加成 +30%</span>';
       }
@@ -2527,7 +2595,7 @@ function drawRadarChart(totalReturn){
 // ============================
 function shareResult(){
   var totalReturn = ((money - 10000) / 10000 * 100).toFixed(1);
-  var text = "【股神成长之路 v5.0】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
+  var text = "【钞能力觉醒 v5.5】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
     "最终资产：¥" + money.toLocaleString() + "（收益率" + totalReturn + "%）\n" +
     "风格加成触发 " + bonusCount + "/20 次\n经历四个成长阶段：入市新手→摸爬滚打→投资觉醒→股神进阶\n" +
     "来挑战你的投资智慧吧！";
