@@ -2170,7 +2170,7 @@ function makeChoice(idx){
     nextBtn.textContent = "继续投资 →";
     nextBtn.onclick = function(){ currentEvent++; renderEvent(); };
   }
-  panel.appendChild(nextBtn);
+  document.getElementById("result-panel").appendChild(nextBtn);
 
   // Hide choices
   var choicesDiv = document.querySelector(".choices");
