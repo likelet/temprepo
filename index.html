@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>钞能力觉醒 v5.9</title>
+<title>钞能力觉醒 v6.0</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -162,6 +162,22 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .btn-next{padding:12px 36px;border-radius:25px;border:none;background:var(--accent);color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:12px;transition:all .2s}
 .btn-next:hover{background:var(--accent2);transform:translateY(-1px)}
 
+/* === BANKRUPTCY SCREEN === */
+#screen-bankrupt{background:linear-gradient(160deg,#1a0000 0%,#2d0a0a 40%,#0a0a0a 100%);text-align:center;padding:40px 20px}
+.bankrupt-container{max-width:400px;margin:0 auto;animation:bankruptIn 1s ease}
+@keyframes bankruptIn{0%{opacity:0;transform:scale(0.8)}50%{opacity:1;transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes skullShake{0%,100%{transform:rotate(0)}10%,30%,50%,70%,90%{transform:rotate(-3deg)}20%,40%,60%,80%{transform:rotate(3deg)}}
+.bankrupt-skull{font-size:80px;animation:skullShake 2s ease-in-out infinite;margin-bottom:16px;filter:grayscale(0.3)}
+.bankrupt-title{font-size:32px;font-weight:900;color:#ef4444;margin-bottom:8px;letter-spacing:2px}
+.bankrupt-subtitle{font-size:15px;color:#888;margin-bottom:24px}
+.bankrupt-balance{font-size:18px;color:#666;margin-bottom:20px}
+.bankrupt-zero{font-size:36px;font-weight:900;color:#ef4444}
+.bankrupt-quote{font-size:14px;color:#555;font-style:italic;margin-bottom:24px;padding:0 10px}
+.bankrupt-lesson{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:20px;text-align:left}
+.bankrupt-lesson-title{font-size:14px;font-weight:700;color:#ef4444;margin-bottom:8px}
+.bankrupt-lesson-text{font-size:13px;color:#999;line-height:1.7}
+.bankrupt-stats{font-size:13px;color:#666;margin-bottom:24px;line-height:2}
+
 /* === ENDING SCREEN === */
 #screen-ending{background:linear-gradient(160deg,#0a0e17 0%,#0f1a2e 40%,#0a2e1a 100%);text-align:center;padding:40px 20px}
 .ending-content{animation:endingIn .8s ease}
@@ -264,7 +280,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div id="screen-start" class="screen active">
   <div class="start-header">
     <div class="game-logo">📈</div>
-    <div class="game-title">钞能力觉醒<span class="game-ver">v5.9 · 题库焕新版</span></div>
+    <div class="game-title">钞能力觉醒<span class="game-ver">v6.0 · 题库焕新版</span></div>
     <div class="game-subtitle">本金10000元，经历A股十年真实场景，从韭菜到股神的蜕变</div>
   </div>
 
@@ -394,6 +410,23 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
       <span>👥 <span id="busuanzi_value_site_uv"><strong>...</strong></span> 人来过</span>
       <span>📖 <span id="busuanzi_value_site_pv"><strong>...</strong></span> 次浏览</span>
     </div>
+  </div>
+</div>
+
+<!-- ============ BANKRUPTCY SCREEN ============ -->
+<div id="screen-bankrupt" class="screen">
+  <div class="bankrupt-container">
+    <div class="bankrupt-skull">💀</div>
+    <div class="bankrupt-title">账户归零</div>
+    <div class="bankrupt-subtitle">你的投资生涯结束了</div>
+    <div class="bankrupt-balance">剩余资金：<span class="bankrupt-zero">¥0</span></div>
+    <div class="bankrupt-quote">"市场专治各种不服，你只是其中一个。"</div>
+    <div class="bankrupt-lesson">
+      <div class="bankrupt-lesson-title">📌 教训总结</div>
+      <div id="bankrupt-lesson-text">连续亏损导致资金清零。记住：生存是投资的第一法则。</div>
+    </div>
+    <div class="bankrupt-stats" id="bankrupt-stats"></div>
+    <button class="btn-start" onclick="location.reload()">重新开始</button>
   </div>
 </div>
 
@@ -2097,15 +2130,9 @@ function makeChoice(idx){
 
   var prevMoney = money;
   money += amount;
-  if(money < 100) money = 100;
-  if(money <= 100 && amount < 0) {
-    var warnDiv = document.createElement("div");
-    warnDiv.className = "result-desc";
-    warnDiv.style.color = "var(--loss)";
-    warnDiv.style.fontWeight = "bold";
-    warnDiv.textContent = "⚠️ 账户已触及底线，剩余资金被保护在100元。投资有风险，请谨慎操作。";
-    panel.appendChild(warnDiv);
-  }
+
+  // Bankruptcy check - clamp to 0
+  if(money <= 0) money = 0;
 
   phaseReturns[phaseIdx] += amount;
 
@@ -2116,6 +2143,48 @@ function makeChoice(idx){
   });
 
   // Show result
+  showResultPanel(choice, amount, pct, isBonus);
+
+  var nextBtn = document.createElement("button");
+  nextBtn.className = "btn-next";
+
+  var isLast = currentEvent >= gameEvents.length - 1;
+  var nextPhaseIdx = Math.floor((currentEvent + 1) / 8);
+
+  if(money <= 0){
+    // Bankruptcy: override next button
+    nextBtn.textContent = "查看结果...";
+    nextBtn.style.background = "var(--loss)";
+    nextBtn.onclick = function(){ showBankruptcy(); };
+  } else if(isLast){
+    nextBtn.textContent = "查看投资总结";
+    nextBtn.onclick = function(){ showEnding(); };
+  } else if(nextPhaseIdx > Math.floor(currentEvent / 8)){
+    nextBtn.textContent = "进入下一阶段 →";
+    nextBtn.onclick = function(){
+      currentEvent++;
+      var newPhase = Math.floor(currentEvent / 8);
+      showPhaseTransition(newPhase, false);
+    };
+  } else {
+    nextBtn.textContent = "继续投资 →";
+    nextBtn.onclick = function(){ currentEvent++; renderEvent(); };
+  }
+  panel.appendChild(nextBtn);
+
+  // Hide choices
+  var choicesDiv = document.querySelector(".choices");
+  if(choicesDiv) choicesDiv.style.display = "none";
+
+  // Update HUD
+  document.getElementById("hud-money").textContent = money.toLocaleString();
+  renderRoad();
+}
+
+// ============================
+// RESULT PANEL (shared)
+// ============================
+function showResultPanel(choice, amount, pct, isBonus){
   var panel = document.getElementById("result-panel");
   panel.className = "result-panel show " + choice.result_type;
   panel.innerHTML = "";
@@ -2146,36 +2215,36 @@ function makeChoice(idx){
   knowledge.appendChild(strong);
   knowledge.appendChild(document.createTextNode(choice.knowledge));
   panel.appendChild(knowledge);
+}
 
-  var nextBtn = document.createElement("button");
-  nextBtn.className = "btn-next";
+// ============================
+// BANKRUPTCY SCREEN
+// ============================
+function showBankruptcy(){
+  document.getElementById("screen-game").classList.remove("active");
+  document.getElementById("screen-bankrupt").classList.add("active");
 
-  var nextPhase = (currentEvent + 1) % 5 === 0 && currentEvent < 19;
-  var isLast = currentEvent === 19;
+  // Stats
+  var statsDiv = document.getElementById("bankrupt-stats");
+  var completedEvents = currentEvent + 1;
+  var phase = PHASES[Math.min(Math.floor(currentEvent / 8), 3)];
+  var totalReturn = ((money - 10000) / 10000 * 100).toFixed(1);
+  statsDiv.innerHTML =
+    "投资风格：<span style=\"color:var(--accent)\">" + STYLE_NAMES[selectedStyle] + "</span><br>" +
+    "坚持到了：<span style=\"color:var(--accent)\">" + phase.name + "</span>阶段（第" + completedEvents + "个事件）<br>" +
+    "累计收益：<span style=\"color:#ef4444\">" + totalReturn + "%</span><br>" +
+    "风格加成触发：<span style=\"color:var(--accent)\">" + bonusCount + "次</span>";
 
-  if(isLast){
-    nextBtn.textContent = "查看投资总结";
-    nextBtn.onclick = function(){ showEnding(); };
-  } else if(nextPhase){
-    nextBtn.textContent = "进入下一阶段 →";
-    nextBtn.onclick = function(){
-      currentEvent++;
-      var newPhase = Math.floor(currentEvent / 8);
-      showPhaseTransition(newPhase, false);
-    };
-  } else {
-    nextBtn.textContent = "继续投资 →";
-    nextBtn.onclick = function(){ currentEvent++; renderEvent(); };
-  }
-  panel.appendChild(nextBtn);
-
-  // Hide choices
-  var choicesDiv = document.querySelector(".choices");
-  if(choicesDiv) choicesDiv.style.display = "none";
-
-  // Update HUD
-  document.getElementById("hud-money").textContent = money.toLocaleString();
-  renderRoad();
+  // Dynamic lesson based on how they lost
+  var lessons = [
+    "杠杆是一把双刃剑，放大收益的同时也放大亏损。爆仓只需一次。",
+    "不要把所有鸡蛋放在一个篮子里。分散投资是免费的风险管理。",
+    "止损不是认输，而是保护本金活下去。活着才有翻本的机会。",
+    "追涨杀跌是散户最常见的亏钱方式。情绪化交易不如不交易。",
+    "任何一次大亏都不足以毁灭你，但连续小亏的积累可以。控制每一次的亏损幅度。"
+  ];
+  var lessonText = document.getElementById("bankrupt-lesson-text");
+  lessonText.textContent = lessons[Math.floor(Math.random() * lessons.length)];
 }
 
 // ============================
@@ -2435,7 +2504,7 @@ function drawRadarChart(totalReturn){
 // ============================
 function shareResult(){
   var totalReturn = ((money - 10000) / 10000 * 100).toFixed(1);
-  var text = "【钞能力觉醒 v5.9】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
+  var text = "【钞能力觉醒 v6.0】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
     "最终资产：¥" + money.toLocaleString() + "（收益率" + totalReturn + "%）\n" +
     "风格加成触发 " + bonusCount + "/33 次\n经历四个成长阶段：入市新手→摸爬滚打→投资觉醒→股神进阶\n" +
     "来挑战你的投资智慧吧！";
