@@ -2148,7 +2148,7 @@ function makeChoice(idx){
   var nextBtn = document.createElement("button");
   nextBtn.className = "btn-next";
 
-  var isLast = currentEvent >= gameEvents.length - 1;
+  var isLast = currentEvent >= EVENTS.length - 1;
   var nextPhaseIdx = Math.floor((currentEvent + 1) / 8);
 
   if(money <= 0){
