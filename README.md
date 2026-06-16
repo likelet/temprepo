@@ -1,90 +1,95 @@
-# 钞能力觉醒
+# Super Power Awakening (钞能力觉醒)
 
-A股投资模拟文字冒险游戏 —— 从1万本金到股神之路。
+An A-share investment simulation text adventure game — from 10,000 RMB to stock market mastery.
 
-> 本金10000元，穿越A股十年真实场景，做出你的每一个投资决策。
+> Start with 10,000 RMB. Navigate 10 years of real A-share market events. Make every investment decision count.
 
-## 玩法说明
+## How to Play
 
-1. 选择你的**投资风格**（技术派 / 价值派 / 题材猎手 / 佛系投资）
-2. 系统随机生成一个风格代号
-3. 依次经历 **20个随机A股真实市场场景**（从37个事件池中抽取）
-4. 每个场景做出投资决策，匹配风格的选项有 **+30% 收益加成**
-5. 穿越四个成长阶段：入市新手 → 摸爬滚打 → 投资觉醒 → 股神进阶
-6. 最终查看投资能力画像、成长路线回顾、排行榜
+1. Choose your **investment style** (Technical / Value / Theme Hunter / Zen Investor)
+2. A random nickname is generated based on your style
+3. Experience **20 randomly selected real A-share market scenarios** (drawn from a pool of 37 events)
+4. Make investment decisions at each scenario — choices matching your style earn a **+30% return bonus**
+5. Progress through four growth phases: Rookie > Survivor > Awakening > Master
+6. Review your investment profile, growth timeline, and leaderboard at the end
 
-### 投资风格
+### Investment Styles
 
-| 风格 | 特点 | 核心能力 |
-|------|------|----------|
-| 技术派 | K线 / 均线 / 量价分析 | 趋势跟踪、止损纪律、ETF轮动 |
-| 价值派 | 财报 / 估值 / 安全边际 | 年报分析、逆向投资、高股息 |
-| 题材猎手 | 热点 / 政策 / 事件驱动 | 概念炒作、海外映射、游资博弈 |
-| 佛系投资 | 定投 / 配置 / 长期持有 | 指数定投、资产配置、不动如山 |
+| Style | Focus | Strengths |
+|-------|-------|-----------|
+| Technical | Candlesticks / Moving Averages / Volume-Price | Trend following, stop-loss discipline, ETF rotation |
+| Value | Financials / Valuation / Margin of Safety | Annual report analysis, contrarian investing, high dividends |
+| Theme Hunter | Hot topics / Policy / Event-driven | Concept trading, overseas mapping, speculative plays |
+| Zen Investor | DCA / Asset Allocation / Long-term holding | Index DCA, portfolio rebalancing, buy and hold |
 
-### 覆盖主题（28个A股真实事件）
+### Covered Topics (28 Real A-Share Events)
 
-牛市狂热、千股跌停、熔断机制、白马抱团、贸易战、可转债爆炒、猪周期、基金大卖、核心资产泡沫、配股陷阱、地产暴雷、MSCI扩容、LPR降息、股权质押爆雷、港股通套利、互联网反垄断、大宗减持、科创板开板、资管新规、个人养老金、公募降费、新国九条、央行买国债、康美造假、涨停敢死队、退市危机、924政策组合拳、DeepSeek AI狂潮
+Bull market mania, thousand stocks limit-down, circuit breaker mechanism, white horse grouping, trade war, convertible bond speculation, hog cycle, fund craze, core asset bubble, rights issue trap, property crisis, MSCI expansion, LPR rate cut, equity pledge explosion, Stock Connect arbitrage, internet antitrust, block trade dump, STAR Market launch, new asset management rules, personal pension, public fund fee cut, New Nine Articles of State Council, PBOC bond buying, Kangmei fraud, limit-up daredevils, delisting crisis, 924 Policy Combo, DeepSeek AI frenzy
 
-## 技术栈
+## Tech Stack
 
-- 纯 HTML + CSS + JavaScript，单文件，无外部依赖
-- SVG 雷达图（投资能力画像）
-- localStorage 持久化排行榜
-- 关键概念 Hover 提示系统（自动术语识别）
+- Pure HTML + CSS + JavaScript, single file, no external dependencies
+- SVG radar chart (investment ability profile)
+- localStorage persistent leaderboard
+- Hover tooltip system with auto-detected financial terminology (40+ terms)
 
-## 运行
+## Running
 
-直接打开 `index.html` 即可运行，无需服务器。
+Open `index.html` directly in a browser. No server required.
 
-## 迭代记录
+## Changelog
 
-### v5.5（2026-06-16）
+### v5.6 (2026-06-16)
 
-- 游戏更名为「钞能力觉醒」
-- 新增关键概念 Hover 提示系统：覆盖杠杆、融资盘、融券、期权、熔断、涨停板、ST、注册制、MSCI、LPR、ETF、可转债、PE/PB/ROE 等 40+ 投资术语
-- 风格选择界面的所有关键词均可悬停查看解释
-- 事件故事和选项文本中的术语自动识别并添加提示
-- 新增 README.md 和项目文档
+- Bumped version to v5.6
+- README translated to English
 
-### v5.4（2026-06-16）
+### v5.5 (2026-06-16)
 
-- 事件池从 20 个扩展到 **37 个**，覆盖 28 个 A 股真实主题
-- 新增 20 个事件：熔断机制、白马抱团、贸易战、猪周期、基金大卖、核心资产泡沫、配股陷阱、地产暴雷、MSCI扩容、LPR降息、股权质押爆雷、港股通套利、互联网反垄断、大宗减持、科创板开板、资管新规、个人养老金、公募降费、新国九条、央行买国债
-- 经济平衡优化：亏损选项比例从 6.2% 提升至 28%
-- 最差路径从 +126% 调整为 -57%，中位随机路径约 +377%
-- 四种投资风格收益率平衡至 ~50% 盈利率
+- Game renamed to "Super Power Awakening" (钞能力觉醒)
+- Added hover tooltip system for key investment concepts: leverage, margin trading, short selling, options, circuit breaker, limit-up/down, ST, registration-based IPO, MSCI, LPR, ETF, convertible bonds, PE/PB/ROE and 40+ more financial terms
+- All keywords on the style selection screen are hoverable with explanations
+- Event stories and choice texts automatically detect and highlight terminology with tooltips
+- Added README.md
 
-### v5.3（2026-06-16）
+### v5.4 (2026-06-16)
 
-- 新增赞赏码展示区域（游戏末尾）
-- 添加分割线和引导文案
+- Event pool expanded from 20 to **37 events**, covering 28 real A-share topics
+- Added 20 new events: circuit breaker, white horse grouping, trade war, hog cycle, fund craze, core asset bubble, rights issue trap, property crisis, MSCI expansion, LPR rate cut, equity pledge, Stock Connect arbitrage, internet antitrust, block trade, STAR Market, asset management rules, personal pension, fund fee cut, New Nine Articles, PBOC bond buying
+- Economic balance optimization: loss option ratio increased from 6.2% to 28%
+- Worst-case path adjusted from +126% to -57%; median random path ~+377%
+- All four style win rates balanced to ~50%
 
-### v5.2（2026-06-16）
+### v5.3 (2026-06-16)
 
-- 新增 17 个亏损选项（覆盖 14 个事件）
-- 极端利润封顶（牛市事件 9500→5500，新冠题材 -2500）
-- 经济平衡调整：亏损率 6% → 28%
+- Added tip QR code section at game ending
+- Added divider and descriptive copy
 
-### v5.1（2026-06-16）
+### v5.2 (2026-06-16)
 
-- 投资代号随机生成系统（每种风格 15 个名字池）
-- 新增「换一个」按钮
-- 新增用户统计排行榜（localStorage，Top 10，最多 50 条记录）
-- 金/银/铜牌展示，当前局高亮
+- Added 17 loss options across 14 events
+- Capped extreme profits (bull market event 9500→5500, COVID theme -2500)
+- Economic balance: loss rate 6% → 28%
 
-### v5.0（2026-06-16）
+### v5.1 (2026-06-16)
 
-- 从 v4.0 全面重构
-- 4 阶段成长路线系统：入市新手 → 摸爬滚打 → 投资觉醒 → 股神进阶
-- 事件按时间线排序（2014-2025）
-- 阶段转换全屏动画 + HUD 进度条
-- SVG 雷达图（收益/风控/风格/洞察 4 维度）
-- 清理浏览器扩展残留代码
-- 事件从 20 个扩展到 27 个
+- Random nickname generation system (15 name pool per style)
+- Added "reroll" button
+- User statistics leaderboard (localStorage, Top 10, max 50 records)
+- Gold/Silver/Bronze badges, current game highlighted
+
+### v5.0 (2026-06-16)
+
+- Full rebuild from v4.0
+- 4-phase growth system: Rookie → Survivor → Awakening → Master
+- Events sorted by timeline (2014–2025)
+- Full-screen phase transition animations + HUD progress bar
+- SVG radar chart (4 dimensions: Returns / Risk Control / Style / Insight)
+- Removed browser extension residual code
+- Events expanded from 20 to 27
 
 ### v4.0
 
-- 初始版本，20 个事件
-- 4 种投资风格 + 风格加成系统
-- 基础排行榜
+- Initial version, 20 events
+- 4 investment styles + style bonus system
+- Basic leaderboard

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>钞能力觉醒 v5.5</title>
+<title>钞能力觉醒 v5.6</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -266,7 +266,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div id="screen-start" class="screen active">
   <div class="start-header">
     <div class="game-logo">📈</div>
-    <div class="game-title">钞能力觉醒<span class="game-ver">v5.5 · 成长路线版</span></div>
+    <div class="game-title">钞能力觉醒<span class="game-ver">v5.6 · 成长路线版</span></div>
     <div class="game-subtitle">本金10000元，经历A股十年真实场景，从韭菜到股神的蜕变</div>
   </div>
 
@@ -2595,7 +2595,7 @@ function drawRadarChart(totalReturn){
 // ============================
 function shareResult(){
   var totalReturn = ((money - 10000) / 10000 * 100).toFixed(1);
-  var text = "【钞能力觉醒 v5.5】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
+  var text = "【钞能力觉醒 v5.6】\n我是" + playerName + "，投资风格：" + STYLE_NAMES[selectedStyle] + "\n" +
     "最终资产：¥" + money.toLocaleString() + "（收益率" + totalReturn + "%）\n" +
     "风格加成触发 " + bonusCount + "/20 次\n经历四个成长阶段：入市新手→摸爬滚打→投资觉醒→股神进阶\n" +
     "来挑战你的投资智慧吧！";
